@@ -4,11 +4,23 @@ using NServiceBus;
 
 class Program
 {
+    const string endpointName = "Samples.ASBS.SendReply.Endpoint2";
+
     static async Task Main()
     {
-        Console.Title = "Samples.ASBS.SendReply.Endpoint2";
+        IEndpointInstance endpointInstance = await ConfigureEndpoint().ConfigureAwait(false);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
+        Console.Title = endpointName;
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
+    }
+
+    private static async Task<IEndpointInstance> ConfigureEndpoint()
+    {
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
@@ -16,19 +28,13 @@ class Program
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
-        {
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
-        }
 
         transport.ConnectionString(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        return endpointInstance;
     }
 }

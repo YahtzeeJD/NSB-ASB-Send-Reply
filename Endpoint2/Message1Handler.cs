@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
 public class Message1Handler :
     IHandleMessages<Message1>
 {
-    static ILog log = LogManager.GetLogger<Message1Handler>();
+    static readonly ILog log = LogManager.GetLogger<Message1Handler>();
 
     public Task Handle(Message1 message, IMessageHandlerContext context)
     {
@@ -13,7 +14,7 @@ public class Message1Handler :
 
         var message2 = new Message2
         {
-            Property = "Hello from Endpoint2"
+            Property = $"Hello from Endpoint2 at {DateTime.Now:MM/dd/yyyy hh:mm:ss.fff tt}"
         };
         return context.Reply(message2);
     }
