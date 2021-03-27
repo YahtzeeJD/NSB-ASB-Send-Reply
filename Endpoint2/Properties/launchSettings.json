@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Endpoint2": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AzureServiceBus_ConnectionString": "Endpoint=sb://authoring-local-servicebus-john.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=g1QjzVL+aYL7QuDNNDsF/eZIXmdAfnWYRIhyXM2vsF0="
+      }
+    }
+  }
+}
