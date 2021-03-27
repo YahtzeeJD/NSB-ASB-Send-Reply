@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
+using System.Threading.Tasks;
 
 public class Message2Handler :
     IHandleMessages<SendMessageResponse>

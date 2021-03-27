@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
+using System;
+using System.Threading.Tasks;
 
 public class Message1Handler :
     IHandleMessages<SendMessageCommand>
