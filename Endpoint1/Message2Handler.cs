@@ -3,13 +3,13 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 public class Message2Handler :
-    IHandleMessages<Message2>
+    IHandleMessages<SendMessageResponse>
 {
     static readonly ILog log = LogManager.GetLogger<Message2Handler>();
 
-    public Task Handle(Message2 message, IMessageHandlerContext context)
+    public Task Handle(SendMessageResponse message, IMessageHandlerContext context)
     {
-        log.Info($"Received Message2: {message.Property}");
+        log.Info($"Received Response: {message.Property}");
         return Task.CompletedTask;
     }
 }

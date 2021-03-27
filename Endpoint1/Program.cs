@@ -25,7 +25,7 @@ class Program
             }
 
             var orderId = Guid.NewGuid();
-            var message = new Message1
+            var message = new SendMessageCommand
             {
                 Property = $"Hello from Endpoint1 at {DateTime.Now:MM/dd/yyyy hh:mm:ss.fff tt}"
             };
@@ -33,7 +33,7 @@ class Program
             await endpointInstance.Send("Samples.ASBS.SendReply.Endpoint2", message)
                 .ConfigureAwait(false);
 
-            Console.WriteLine("Message1 sent");
+            Console.WriteLine("Command sent");
         }
 
         await endpointInstance.Stop()
