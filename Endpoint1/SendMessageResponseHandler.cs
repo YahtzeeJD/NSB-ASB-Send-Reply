@@ -2,10 +2,9 @@
 using NServiceBus.Logging;
 using System.Threading.Tasks;
 
-public class Message2Handler :
-    IHandleMessages<SendMessageResponse>
+public class SendMessageResponseHandler : IHandleMessages<SendMessageResponse>
 {
-    static readonly ILog log = LogManager.GetLogger<Message2Handler>();
+    static readonly ILog log = LogManager.GetLogger<SendMessageResponseHandler>();
 
     public Task Handle(SendMessageResponse message, IMessageHandlerContext context)
     {

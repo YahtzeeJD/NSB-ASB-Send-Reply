@@ -3,10 +3,9 @@ using NServiceBus.Logging;
 using System;
 using System.Threading.Tasks;
 
-public class Message1Handler :
-    IHandleMessages<SendMessageCommand>
+public class SendMessageCommandHandler : IHandleMessages<SendMessageCommand>
 {
-    static readonly ILog log = LogManager.GetLogger<Message1Handler>();
+    static readonly ILog log = LogManager.GetLogger<SendMessageCommandHandler>();
 
     public Task Handle(SendMessageCommand message, IMessageHandlerContext context)
     {
